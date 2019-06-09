@@ -1,0 +1,14 @@
+{% extends "fan_fictions/base.html" %}
+
+{% block content %}
+
+    <p>Add a new entry to {{story.title}}</p>
+    <p><a href="{% url 'fan_fictions:story' story.id %}">{{story.title}}</a> </p>
+    <form action ="{% url 'fan_fictions:new_entry' story.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add a new entry</button>
+
+    </form>
+
+{% endblock content %}

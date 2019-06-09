@@ -1,0 +1,21 @@
+{% extends "fan_fictions/base.html" %}
+
+{% block content %}
+
+<p>Here is a list of all the stories</p>
+<p>Stories</p>
+
+<a href="{% url 'fan_fictions:new_story' %}">Create a new story:</a>
+<p>Here are all the currently public stories. Enjoy!</p>
+<ul>
+    {% for story in stories %}
+        <li>
+            <a href="{% url 'fan_fictions:story' story.id %}">{{story}}</a>
+
+        </li>
+    {% empty %}
+        <li>No stories have been added yet.</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

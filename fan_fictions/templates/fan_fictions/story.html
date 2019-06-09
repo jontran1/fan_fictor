@@ -1,0 +1,21 @@
+{% extends "fan_fictions/base.html" %}
+
+{% block content %}
+
+<p>{{story}}</p>
+<a href="{% url 'fan_fictions:new_entry' story.id %}">Create a new entry for this story</a>
+<ul>
+    {% for entry in entries %}
+    <li>
+        <a href="{% url 'fan_fictions:chapter' story.id entry.id %}">{{entry.title}}</a>
+
+    </li>
+    {% empty %}
+    <li>
+        There is no entries for this story yet.
+    </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,12 @@
+{% extends "fan_fictions/base.html" %}
+
+{% block content %}
+
+<p>{{story}}</p>
+<a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a>
+<p>{{entry.title}}</p>
+<p>
+    {{entry.text}}
+</p>
+
+{% endblock content %}
