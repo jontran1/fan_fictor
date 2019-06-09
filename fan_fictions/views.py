@@ -53,20 +53,23 @@ def chapter(request, story_id, entry_id):
     except Story.DoesNotExist:
         raise Http404("Story does not exist")
 
-def new_story(resquest):
+@login_required
+def new_story(request):
     """Add a new story"""
-    if resquest.method != 'POST':
+    if request.method != 'POST':
         # No data submitted; create a blank form.
         form = StoryForm()
     else:
         # POST data submitted; process data.
-        form = StoryForm(resquest.POST)
+        form = StoryForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_story = form.save(commit=False)
+            new_story.author = request.user
+            new_story.save()
             return HttpResponseRedirect(reverse('fan_fictions:stories'))
 
     context = {'form': form}
-    return render(resquest, 'fan_fictions/new_story.html', context)
+    return render(request, 'fan_fictions/new_story.html', context)
 
 def new_entry(request, story_id):
     """Add a new entry to the story"""

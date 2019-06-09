@@ -4,8 +4,8 @@ from .models import Story, Entry
 class StoryForm(forms.ModelForm):
     class Meta:
         model = Story
-        fields = ['title']
-        lables = {'title': ''}
+        fields = ['title', 'public']
+        lables = {'title': '', 'public': True}
 
 class EntryForm(forms.ModelForm):
     class Meta:
