@@ -3,7 +3,9 @@
 {% block content %}
 
 <p>{{story}}</p>
-<a href="{% url 'fan_fictions:new_entry' story.id %}">Create a new entry for this story</a>
+{% if story.author == user %}
+    <a href="{% url 'fan_fictions:new_entry' story.id %}">Create a new entry for this story</a>
+{% endif %}
 <ul>
     {% for entry in entries %}
     <li>

@@ -71,6 +71,7 @@ def new_story(request):
     context = {'form': form}
     return render(request, 'fan_fictions/new_story.html', context)
 
+@login_required
 def new_entry(request, story_id):
     """Add a new entry to the story"""
     story = Story.objects.get(id=story_id)
@@ -78,12 +79,14 @@ def new_entry(request, story_id):
         form = EntryForm()
     else:
         form = EntryForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and request.user == story.author:
             new_entry = form.save(commit=False)
             # Foreign Key relationship with Story model
             new_entry.story = story
             new_entry.save()
             return HttpResponseRedirect(reverse('fan_fictions:story', args=[story_id]))
+        else:
+            raise Http404("You are not the owner of this story.")
     context = {'story': story, 'form': form}
     return render(request, 'fan_fictions/new_entry.html', context)
 
