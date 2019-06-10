@@ -5,6 +5,7 @@
 <p>{{story}}</p>
 {% if story.author == user %}
     <a href="{% url 'fan_fictions:new_entry' story.id %}">Create a new entry for this story</a>
+    <a href="{% url 'fan_fictions:edit_story' story.id %}">Edit this story</a>
 {% endif %}
 <ul>
     {% for entry in entries %}

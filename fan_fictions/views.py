@@ -102,5 +102,21 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story.id, entry.id]))
-    context={'entry': entry, 'story': story, 'form':form}
+    context={'entry': entry, 'story': story, 'form': form}
     return render(request, 'fan_fictions/edit_entry.html', context)
+
+def edit_story(request, story_id):
+    """Edit an existing story"""
+    story = Story.objects.get(id=story_id)
+    entries = story.entry_set.order_by('date_added')
+
+    if request.method != 'POST':
+        form = StoryForm(instance=story)
+    else:
+        form = StoryForm(instance=story, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('fan_fictions:story', args=[story_id]))
+    context = {'story': story, 'entries': entries, 'form': form}
+
+    return render(request, 'fan_fictions/edit_story.html', context)

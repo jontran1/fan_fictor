@@ -10,4 +10,5 @@ urlpatterns = [
     path('stories/new_story/', views.new_story, name='new_story'),
     path('stories/<int:story_id>/new_entry', views.new_entry, name='new_entry'),
     path('stories/edit_entry/<int:entry_id>', views.edit_entry, name='edit_entry'),
+    path('stories/edit_story/<int:story_id>', views.edit_story, name='edit_story'),
 ]
