@@ -3,7 +3,9 @@
 {% block content %}
 
 <p>{{story}}</p>
-<a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a>
+{% if user == story.author %}
+    <a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a>
+{% endif %}
 <p>{{entry.title}}</p>
 <p>
     {{entry.text}}

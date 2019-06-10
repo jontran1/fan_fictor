@@ -7,6 +7,10 @@ from django.urls import reverse
 from django.contrib.auth import logout
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from fan_fictions.models import Story
+from django.http import Http404
+from django.contrib.auth.decorators import login_required
+
 
 def logout_view(request):
     logout(request)
@@ -29,4 +33,11 @@ def register(request):
             return HttpResponseRedirect(reverse('fan_fictions:index'))
     context = {'form': form}
     return render(request, 'users/register.html', context)
+
+@login_required
+def my_stories(request):
+    """Show all stories belonging to current logged in user."""
+    stories = request.user.story_set.order_by('date_added')
+    context = {'stories' : stories}
+    return render(request, 'fan_fictions/stories.html', context)
 
