@@ -11,4 +11,5 @@
     {{entry.text}}
 </p>
 
+<a href="{% url 'users:new_comment' story.id entry.id %}">Add a new comment</a>
 {% endblock content %}

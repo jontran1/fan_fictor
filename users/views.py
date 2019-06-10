@@ -41,3 +41,7 @@ def my_stories(request):
     context = {'stories' : stories}
     return render(request, 'fan_fictions/stories.html', context)
 
+@login_required
+def new_comment(request, story_id, entry_id):
+    return HttpResponseRedirect(reverse('fan_fictions:index'))
+
