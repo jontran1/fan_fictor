@@ -17,6 +17,7 @@ class Story(models.Model):
 
 class Entry(models.Model):
     """A fan fiction story"""
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     text = models.CharField(max_length=1000)

@@ -1,0 +1,14 @@
+{% extends "fan_fictions/base.html" %}
+
+{% block content %}
+
+    <p>Add a new comment to {{entry.title}}</p>
+    <p><a href="{% url 'fan_fictions:chapter' story.id entry.id %}">{{entry.title}}</a> </p>
+    <form action ="{% url 'users:new_comment' story.id entry.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Add a new comment</button>
+
+    </form>
+
+{% endblock content %}

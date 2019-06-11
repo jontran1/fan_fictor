@@ -1,15 +1,16 @@
 from django.shortcuts import render
-
 # Create your views here.
 
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.contrib.auth import logout
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from fan_fictions.models import Story
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+
+from fan_fictions.models import Story, Entry
+from .forms import CommentForm
 
 
 def logout_view(request):
@@ -43,5 +44,22 @@ def my_stories(request):
 
 @login_required
 def new_comment(request, story_id, entry_id):
-    return HttpResponseRedirect(reverse('fan_fictions:index'))
+    """Add a new comment"""
+    story = Story.objects.get(id=story_id)
+    entry = Entry.objects.get(id=entry_id)
 
+    if request.method != 'POST':
+        form = CommentForm()
+    else:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            # Foreign Key relationship
+            new_comment.story = story
+            new_comment.entry = entry
+            new_comment.user = request.user
+            new_comment.save()
+            return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story_id, entry_id]))
+
+    context = {'story': story, 'entry': entry, 'form': form}
+    return render(request, 'users/new_comment.html', context)
