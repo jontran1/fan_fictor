@@ -42,10 +42,13 @@ def chapter(request, story_id, entry_id):
     try:
         story = Story.objects.get(id=story_id)
         entry = Entry.objects.get(id=entry_id)
+        comments = entry.comment_set.order_by('date_added')
+        print(comments)
         if story.public or story.author == request.user:
             context = {
                 'story': story,
-                'entry': entry
+                'entry': entry,
+                'comments': comments,
             }
             return render(request, 'fan_fictions/chapter.html', context)
         else:

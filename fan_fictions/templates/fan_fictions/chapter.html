@@ -9,6 +9,11 @@
 <p>{{entry.title}}</p>
 <p>
     {{entry.text}}
+    <p>Comments</p>
+    {% for comment in comments %}
+    <p>{{comment}}</p>
+
+    {% endfor %}
 </p>
 
 <a href="{% url 'users:new_comment' story.id entry.id %}">Add a new comment</a>
