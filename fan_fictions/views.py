@@ -85,6 +85,7 @@ def new_entry(request, story_id):
             new_entry = form.save(commit=False)
             # Foreign Key relationship with Story model
             new_entry.story = story
+            new_entry.author = request.user
             new_entry.save()
             return HttpResponseRedirect(reverse('fan_fictions:story', args=[story_id]))
         else:
