@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Third party apps
+    'bootstrap4',
+
     # My apps
     'fan_fictions',
     'users',
@@ -125,3 +128,8 @@ STATIC_URL = '/static/'
 
 # My settings
 LOGIN_URL = '/users/login'
+
+# Settings for django-bootstrap4
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}

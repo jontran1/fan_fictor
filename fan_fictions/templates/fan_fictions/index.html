@@ -1,12 +1,15 @@
 {% extends "fan_fictions/base.html" %}
 
+{% block header %}
+    <div class="jumbotron">
+        <h1>Read and create your own stories!</h1>
+    </div>
+{% endblock header %}
+
 {% block content %}
-
-<p>This is the home page of Fan Fictor</p>
-
-<p>People from all over the world write fan fiction stories about their favorite stories. It can be about anything
-movies, tv shows, anime, video games and more</p>
-
-<a href="{% url 'fan_fictions:stories' %}">Click here for stories</a>
-
+<h2>
+    <a href="{% url 'users:register' %}">Register an account</a> and start reading and creating new stories!
+    People from all over the world write fan fiction stories about their favorite stories. It can be about anything
+    movies, tv shows, anime, video games, and more.
+</h2>
 {% endblock content %}
