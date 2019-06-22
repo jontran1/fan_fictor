@@ -5,10 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from fan_fictions.models import Story
-from django.http import Http404
 from django.contrib.auth.decorators import login_required
-
 from fan_fictions.models import Story, Entry
 from .forms import CommentForm
 
