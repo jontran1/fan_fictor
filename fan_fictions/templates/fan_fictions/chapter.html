@@ -1,17 +1,16 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block header %}
-    <h1>Stories</h1>
+    <h2>{{story}} by Author: {{story.author}}</h2>
 {% endblock header %}
 
 {% block content %}
-    <p>{{story}}</p>
     {% if user == story.author %}
         <p>
             <a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a>
         </p>
     {% endif %}
-    <p>{{entry.title}}</p>
+    <h3>{{entry.title}} by Author: {{entry.author}}</h3>
 
 <p>
     {{entry.text}}
