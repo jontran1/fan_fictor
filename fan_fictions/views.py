@@ -42,7 +42,7 @@ def chapter(request, story_id, entry_id):
     try:
         story = Story.objects.get(id=story_id)
         entry = Entry.objects.get(id=entry_id)
-        comments = entry.comment_set.order_by('date_added')
+        comments = entry.comment_set.order_by('-date_added')
         if story.public or story.author == request.user:
             context = {
                 'story': story,
