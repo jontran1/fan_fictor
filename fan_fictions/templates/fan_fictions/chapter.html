@@ -5,13 +5,13 @@
 {% endblock header %}
 
 {% block content %}
+<p><strong>{{entry.title}}</strong> by Author: {{entry.author}}</p>
+
     {% if user == story.author %}
         <p>
             <a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a>
         </p>
     {% endif %}
-    <h3>{{entry.title}} by Author: {{entry.author}}</h3>
-
 <p>
     {{entry.text}}
     <p><a href="{% url 'users:new_comment' story.id entry.id %}">Add a new comment</a></p>
