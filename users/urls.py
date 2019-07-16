@@ -14,5 +14,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('mystories/', views.my_stories, name='my_stories'),
     path('stories/<int:story_id>/<int:entry_id>/new_comment', views.new_comment, name='new_comment'),
+    path('myprofile/', views.my_profile, name='my_profile'),
 
 ]

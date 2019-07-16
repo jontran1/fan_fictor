@@ -93,10 +93,14 @@ def new_entry(request, story_id):
     context = {'story': story, 'form': form}
     return render(request, 'fan_fictions/new_entry.html', context)
 
+@login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry"""
     entry = Entry.objects.get(id=entry_id)
     story = entry.story
+
+    if request.user != story.author:
+        raise Http404("You are not the owner of this story or entry.")
 
     if request.method != 'POST':
         form = EntryForm(instance=entry)
@@ -105,13 +109,17 @@ def edit_entry(request, entry_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story.id, entry.id]))
-    context={'entry': entry, 'story': story, 'form': form}
+    context = {'entry': entry, 'story': story, 'form': form}
     return render(request, 'fan_fictions/edit_entry.html', context)
 
+@login_required
 def edit_story(request, story_id):
     """Edit an existing story"""
     story = Story.objects.get(id=story_id)
     entries = story.entry_set.order_by('date_added')
+
+    if request.user != story.author:
+        raise Http404("You are not the owner of this story or entry.")
 
     if request.method != 'POST':
         form = StoryForm(instance=story)
@@ -120,6 +128,7 @@ def edit_story(request, story_id):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('fan_fictions:story', args=[story_id]))
+        
     context = {'story': story, 'entries': entries, 'form': form}
 
     return render(request, 'fan_fictions/edit_story.html', context)

@@ -26,6 +26,10 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
             # Log the user in and then redirect to home page
+            # When they register, the user is asked to enter two
+            # matching passwords, and because the form is valid, we know the passwords
+            # match so we can use either one. Here we get the value associated with the
+            # 'password1' key in the form’s POST data.
             authenticated_user = authenticate(username=new_user.username,password=request.POST['password1'])
             login(request, authenticated_user)
             return HttpResponseRedirect(reverse('fan_fictions:index'))
@@ -60,3 +64,8 @@ def new_comment(request, story_id, entry_id):
 
     context = {'story': story, 'entry': entry, 'form': form}
     return render(request, 'users/new_comment.html', context)
+
+@login_required
+def my_profile(request):
+    context = {'user': request.user}
+    return render(request, 'fan_fictions/index.html')
