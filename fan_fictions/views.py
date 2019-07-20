@@ -11,14 +11,12 @@ from .forms import StoryForm, EntryForm
 def index(request):
     return render(request, 'fan_fictions/index.html')
 
-@login_required
 def stories(request):
     """Show all stories public stories"""
     stories = Story.objects.order_by('date_added').filter(public=True)
     context = {'stories': stories}
     return render(request, 'fan_fictions/stories.html', context)
 
-@login_required
 def story(request, story_id):
     """Show details of a story which is a Fan_fiction"""
     try:
@@ -36,7 +34,6 @@ def story(request, story_id):
         raise Http404("Story does not exist")
 
 
-@login_required
 def chapter(request, story_id, entry_id):
     """Shows the chapter of the story"""
     try:

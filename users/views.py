@@ -80,3 +80,7 @@ def my_profile(request):
                'stories': stories
                }
     return render(request, 'users/profiles.html', context)
+
+def users_profiles(request, user_id):
+    return render(request, 'users/profiles.html')
+
