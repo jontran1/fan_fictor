@@ -7,6 +7,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from fan_fictions.models import Story, Entry
+from users.models import UserProfiles
 from .forms import CommentForm
 
 
@@ -62,10 +63,19 @@ def new_comment(request, story_id, entry_id):
             new_comment.save()
             return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story_id, entry_id]))
 
-    context = {'story': story, 'entry': entry, 'form': form}
+    context = {'story': story,
+               'entry': entry,
+               'form': form}
     return render(request, 'users/new_comment.html', context)
 
 @login_required
 def my_profile(request):
-    context = {'user': request.user}
-    return render(request, 'fan_fictions/index.html')
+    """Displays the profile.html file."""
+    user = request.user
+    user_profile = UserProfiles.objects.get(user=user)
+    print(user_profile.biography)
+    print(user_profile.profile_picture)
+    context = {'user': user,
+               'user_profile': user_profile
+               }
+    return render(request, 'users/profiles.html', context)
