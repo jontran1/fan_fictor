@@ -10,7 +10,6 @@
     {% for story in stories %}
         <li>
             <a href="{% url 'fan_fictions:story' story.id %}">{{story}}</a>
-
         </li>
     {% empty %}
         <li>No stories have been added yet.</li>

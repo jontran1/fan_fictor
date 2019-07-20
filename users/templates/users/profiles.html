@@ -1,8 +1,8 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block content %}
-<p>{{user.username}}</p>
+<h2>{{user}} 's profile</h2>
+<img src={{user_profile.profile_picture}}>
+<p style="border: 1px solid black">{{user.username}}</p>
 <p>{{user_profile.biography}}</p>
-<p>{{user_profile.profile_picture}}</p>
-
 {% endblock content %}

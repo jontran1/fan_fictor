@@ -73,8 +73,6 @@ def my_profile(request):
     """Displays the profile.html file."""
     user = request.user
     user_profile = UserProfiles.objects.get(user=user)
-    print(user_profile.biography)
-    print(user_profile.profile_picture)
     context = {'user': user,
                'user_profile': user_profile
                }

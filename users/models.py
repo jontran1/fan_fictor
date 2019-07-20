@@ -18,6 +18,8 @@ class Comment(models.Model):
 
 class UserProfiles(models.Model):
     """User's profiles"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
+                                primary_key=True)
     biography = models.CharField(max_length=1000)
     profile_picture = models.CharField(max_length=1000)
