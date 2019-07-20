@@ -73,7 +73,10 @@ def my_profile(request):
     """Displays the profile.html file."""
     user = request.user
     user_profile = UserProfiles.objects.get(user=user)
+    stories = user.story_set.order_by('-date_added')
+
     context = {'user': user,
-               'user_profile': user_profile
+               'user_profile': user_profile,
+               'stories': stories
                }
     return render(request, 'users/profiles.html', context)
