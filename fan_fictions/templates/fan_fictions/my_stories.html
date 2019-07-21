@@ -1,9 +1,10 @@
 {% extends "fan_fictions/base.html" %}
 
-{% block content %}
+{% block header %}
+    <h4>My stories</h4>
+{% endblock header %}
 
-<p>My stories.</p>
-<p>Stories</p>
+{% block content %}
 
 <a href="{% url 'fan_fictions:new_story' %}">Create a new story:</a>
 <ul>
