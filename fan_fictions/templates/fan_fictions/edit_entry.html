@@ -1,12 +1,15 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block content %}
-    <p><a href="{% url 'fan_fictions:story' story.id %}">{{story.title}}</a> </p>
-    <p>Edit {{entry.title}}</p>
+    <h4><a href="{% url 'fan_fictions:story' story.id %}">{{story.title}}</a> </h4>
     <form action ="{% url 'fan_fictions:edit_entry' entry.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">Save changes</button>
+
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save changes</button>
+
+        </div>
 
     </form>
 

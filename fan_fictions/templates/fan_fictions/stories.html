@@ -12,13 +12,13 @@
 <p>Here are all the currently public stories. Enjoy!</p>
 <ul>
     {% for story in stories %}
-        <li>
-            <a href="{% url 'fan_fictions:story' story.id %}">{{story}}</a>
-
-        </li>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="{% url 'fan_fictions:story' story.id %}">{{story}}</a>
+            </li>
+        </ul>
     {% empty %}
         <li>No stories have been added yet.</li>
     {% endfor %}
 </ul>
-
 {% endblock content %}

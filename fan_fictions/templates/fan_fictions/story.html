@@ -8,18 +8,15 @@
 {% block content %}
 
 {% if story.author == user %}
-    <p>
-        <a href="{% url 'fan_fictions:new_entry' story.id %}">Create a new entry for this story</a>
-    </p>
-    <p>
-        <a href="{% url 'fan_fictions:edit_story' story.id %}">Edit this story</a>
-    </p>
+
+    <a href="{% url 'fan_fictions:new_entry' story.id %}">Create a new entry for this story</a>
+    <a href="{% url 'fan_fictions:edit_story' story.id %}">Edit this story</a>
+
 {% endif %}
 <ul>
     {% for entry in entries %}
-    <li>
+    <li class="list-group-item">
         <a href="{% url 'fan_fictions:chapter' story.id entry.id %}">{{entry.title}}</a>
-
     </li>
     {% empty %}
     <li>

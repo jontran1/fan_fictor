@@ -4,10 +4,11 @@
     <p><a href="{% url 'fan_fictions:story' story.id %}">{{story.title}}</a> </p>
     <p>Edit {{story.title}}</p>
     <form action ="{% url 'fan_fictions:edit_story' story.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">Save changes</button>
-
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save changes</button>
+        </div>
     </form>
 
 {% endblock content %}
