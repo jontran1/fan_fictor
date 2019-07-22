@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from fan_fictions.models import Story, Entry
-from users.models import UserProfiles
+from users.models import UserProfiles, Comment
 from .forms import CommentForm
 
 
@@ -67,6 +67,13 @@ def new_comment(request, story_id, entry_id):
                'entry': entry,
                'form': form}
     return render(request, 'users/new_comment.html', context)
+
+@login_required
+def remove_comment(request, story_id, entry_id, comment_id):
+    comment = Comment.objects.get(id=comment_id)
+    comment.delete()
+    return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story_id, entry_id]))
+
 
 @login_required
 def my_profile(request):

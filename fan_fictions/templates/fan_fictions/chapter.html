@@ -5,12 +5,14 @@
 {% endblock header %}
 
 {% block content %}
-<p><strong>{{entry.title}}</strong> by Author: {{entry.author}}</p>
+<h4><strong>{{entry.title}}</strong> by Author: {{entry.author}}</h4>
 
     {% if user == story.author %}
-        <a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a>
+        <p><a href="{% url 'fan_fictions:edit_entry' entry.id %}">Edit this entry</a></p>
     {% endif %}
+
     {{entry.text}}
+
     <p><a href="{% url 'users:new_comment' story.id entry.id %}">Add a new comment</a></p>
     <p><strong>Comments</strong></p>
     {% for comment in comments %}
@@ -21,10 +23,14 @@
                 {{entry.date_added|date:'M d, Y H:i' }}
                 </small>
             </h6>
-
             <div class="panel-body">
-                {{comment.text | linebreaks}}
+                {{comment.text}}
             </div>
+            <small>
+                {% if user.is_authenticated and user == story.author %}
+                    <a href="{% url 'users:remove_comment' story.id entry.id comment.id %}">Remove comment</a>
+                {% endif %}
+            </small>
         </div> <!-- panel -->
 
     {% empty %}
