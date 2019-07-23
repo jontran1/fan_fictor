@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from fan_fictions.models import Story, Entry
 from users.models import UserProfiles, Comment
 from .forms import CommentForm
+from django.http import Http404
+
 
 
 def logout_view(request):
@@ -70,9 +72,12 @@ def new_comment(request, story_id, entry_id):
 
 @login_required
 def remove_comment(request, story_id, entry_id, comment_id):
-    comment = Comment.objects.get(id=comment_id)
-    comment.delete()
-    return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story_id, entry_id]))
+    if request.user == story_id.author:
+        comment = Comment.objects.get(id=comment_id)
+        comment.delete()
+        return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story_id, entry_id]))
+    else:
+        raise Http404("You are not authorized to remove comment.")
 
 
 @login_required

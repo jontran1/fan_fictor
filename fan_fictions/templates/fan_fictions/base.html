@@ -33,7 +33,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
-                <li><a class="nav-link">Hello, {{user.username}}.</a></li>
+                <li><a class="nav-link" href="{% url 'users:my_profile' %}">Hello, {{user.username}}.</a></li>
                 <li><a class="nav-link"href="{% url 'users:logout' %}">log out</a> </li>
             {% else %}
                 <li><a class="nav-link"href="{% url 'users:register' %}">Register</a> </li>
