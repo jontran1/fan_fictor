@@ -1,6 +1,17 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block content %}
+    <a href="{% url 'users:my_profile' %}">My profile</a>
+    <form action="{% url 'users:edit_bio' %}" method="post">
+
+        <div class="form-group">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save changes</button>
+        </div>
+
+
+    </form>
 
 
 {% endblock content %}

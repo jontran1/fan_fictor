@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from fan_fictions.models import Story, Entry
 from users.models import UserProfiles, Comment
-from .forms import CommentForm
+from .forms import CommentForm, BiographyForm
 from django.http import Http404
 
 
@@ -92,6 +92,23 @@ def my_profile(request):
                'stories': stories
                }
     return render(request, 'users/profiles.html', context)
+
+@login_required
+def edit_bio(request):
+    """Edit an existing bio of the currently logged in user."""
+    users_profile = UserProfiles.objects.get(user=request.user)
+    if request.user != users_profile.user:
+        raise Http404("You do not have permission")
+    if request.method != 'POST':
+        form = BiographyForm(instance=users_profile)
+    else:
+        form = BiographyForm(instance=users_profile, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('users:my_profile'))
+
+    context = {'form': form}
+    return render(request, 'users/edit_bio.html', context)
 
 def users_profiles(request, user_id):
     return render(request, 'users/profiles.html')

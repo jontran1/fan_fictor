@@ -8,9 +8,9 @@ class CommentForm(forms.ModelForm):
         labels = {'text': 'Place Comment Here...'}
         widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
-class Biography(forms.ModelForm):
+class BiographyForm(forms.ModelForm):
     class Meta:
         model = UserProfiles
         fields = {'biography'}
         labels = {'biography': 'Enter bio here...'}
-        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+        widgets = {'biography': forms.Textarea(attrs={'cols': 80})}

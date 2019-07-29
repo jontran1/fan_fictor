@@ -21,5 +21,6 @@ class UserProfiles(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,
                                 primary_key=True)
+
     biography = models.CharField(max_length=1000)
     profile_picture = models.CharField(max_length=1000)

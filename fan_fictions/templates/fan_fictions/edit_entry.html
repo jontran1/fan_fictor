@@ -1,7 +1,6 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block content %}
-    <h4><a href="{% url 'fan_fictions:story' story.id %}">{{story.title}}</a> </h4>
     <form action ="{% url 'fan_fictions:edit_entry' entry.id %}" method="post">
 
         <div class="form-group">

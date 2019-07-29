@@ -17,12 +17,13 @@
 <div class="card">
   <div class="card-body">
       <div class="card-body">
-        <h4>{{user.username}} bio:</h4>
+        <h4>{{user.username}}'s bio:</h4>
           {% if user_profile.biography %}
             <p>{{user_profile.biography}}</p>
             {% else %}
             <p>No bio yet...</p>
             {% endif %}
+          <a href="{% url 'users:edit_bio' %}">Edit bio</a>
       </div>
 
       <div class="card-body">
