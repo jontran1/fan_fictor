@@ -34,7 +34,12 @@ def register(request):
             # match so we can use either one. Here we get the value associated with the
             # 'password1' key in the form’s POST data.
             authenticated_user = authenticate(username=new_user.username,password=request.POST['password1'])
+            user_profile = UserProfiles(user=authenticated_user,
+                                        biography='Nothing yet...',
+                                        profile_picture='https://i.imgur.com/ZfgGvCL.png')
+            user_profile.save()
             login(request, authenticated_user)
+
             return HttpResponseRedirect(reverse('fan_fictions:index'))
     context = {'form': form}
     return render(request, 'users/register.html', context)
