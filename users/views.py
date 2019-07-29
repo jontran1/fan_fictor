@@ -115,6 +115,10 @@ def edit_bio(request):
     context = {'form': form}
     return render(request, 'users/edit_bio.html', context)
 
+def edit_profile_picture(request):
+    return HttpResponseRedirect(reverse('users:my_profile'))
+
+
 def users_profiles(request, user_id):
     return render(request, 'users/profiles.html')
 
