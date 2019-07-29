@@ -65,7 +65,7 @@ def new_story(request):
             new_story = form.save(commit=False)
             new_story.author = request.user
             new_story.save()
-            return HttpResponseRedirect(reverse('fan_fictions:stories'))
+            return HttpResponseRedirect(reverse('fan_fictions:story', args=[new_story.id]))
 
     context = {'form': form}
     return render(request, 'fan_fictions/new_story.html', context)
