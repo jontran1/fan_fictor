@@ -16,6 +16,7 @@ urlpatterns = [
     path('stories/<int:story_id>/<int:entry_id>/new_comment', views.new_comment, name='new_comment'),
     path('myprofile/', views.my_profile, name='my_profile'),
     path('delete_comment/<int:story_id>/<int:entry_id>/<int:comment_id>', views.remove_comment, name='remove_comment'),
-    path('myprofile/edit_bio/', views.edit_bio, name='edit_bio')
+    path('myprofile/edit_bio/', views.edit_bio, name='edit_bio'),
+    path('myprofile/change_profile_picture/', views.change_profile_picture, name='change_profile_picture')
 
 ]

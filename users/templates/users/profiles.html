@@ -8,7 +8,8 @@
 {% block content %}
 
 <div class="card" style="width: 18rem; float:left">
-  <img class="card-img-top" src="{{user_profile.profile_picture}}" alt="Card image cap">
+  <img class="card-img-top" src={{user_profile.profile_picture}} alt="user's profile picture">
+    <a href="{% url 'users:change_profile_picture' %}">Change profile picture</a>
   <div class="card-body">
     <p class="card-title">{{user.username}}</p>
   </div>
