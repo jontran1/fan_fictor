@@ -1,20 +1,30 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block header %}
-    <h4>My stories</h4>
+    <h4>Stories</h4>
 {% endblock header %}
 
 {% block content %}
 
+
+
 <a href="{% url 'fan_fictions:new_story' %}">Create a new story:</a>
-<ul>
+<p>Here are all the currently public stories. Enjoy!</p>
+<ul class="list-inline">
     {% for story in stories %}
-        <li class="list-group-item">
-            <a href="{% url 'fan_fictions:story' story.id %}">{{story}}</a>
-        </li>
+    <li class="list-inline-item">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src={{story.story_cover}} alt="Story Cover" style="width:287px;height:200px;">
+          <div class="card-body">
+            <h5 class="card-title">{{story}} by {{story.author}}</h5>
+            <a href="{% url 'fan_fictions:story' story.id %}" class="btn btn-primary">Read Story</a>
+          </div>
+        </div>
+    </li>
     {% empty %}
         <li>No stories have been added yet.</li>
     {% endfor %}
 </ul>
-
 {% endblock content %}
+
+

@@ -1,7 +1,7 @@
 {% extends "fan_fictions/base.html" %}
 
 {% block content %}
-    <form action ="{% url 'fan_fictions:edit_entry' entry.id %}" method="post">
+    <form action ="{% url 'fan_fictions:edit_entry' entry.id %}" method="post" class="post-form">
 
         <div class="form-group">
             {% csrf_token %}

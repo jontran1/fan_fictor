@@ -7,6 +7,7 @@ class Story(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     public = models.BooleanField(default=True)
     title = models.CharField(max_length=50)
+    story_cover = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -21,6 +22,7 @@ class Entry(models.Model):
     story = models.ForeignKey(Story, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     text = models.CharField(max_length=1000)
+    chapter_cover = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:

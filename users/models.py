@@ -23,4 +23,4 @@ class UserProfiles(models.Model):
                                 primary_key=True)
 
     biography = models.CharField(max_length=1000)
-    profile_picture = models.CharField(max_length=1000)
+    profile_picture = models.CharField(max_length=100)

@@ -49,7 +49,7 @@ def my_stories(request):
     """Show all stories belonging to current logged in user."""
     stories = request.user.story_set.order_by('date_added')
     context = {'stories': stories}
-    return render(request, 'fan_fictions/my_stories.html', context)
+    return render(request, 'fan_fictions/stories.html', context)
 
 @login_required
 def new_comment(request, story_id, entry_id):
