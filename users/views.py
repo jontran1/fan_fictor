@@ -77,7 +77,7 @@ def new_comment(request, story_id, entry_id):
 
 @login_required
 def remove_comment(request, story_id, entry_id, comment_id):
-    if request.user == story_id.author:
+    if request.user == Story.objects.get(id=story_id).author:
         comment = Comment.objects.get(id=comment_id)
         comment.delete()
         return HttpResponseRedirect(reverse('fan_fictions:chapter', args=[story_id, entry_id]))
