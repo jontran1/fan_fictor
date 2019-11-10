@@ -2,7 +2,7 @@
 
 {% block content %}
     <a href="{% url 'users:my_profile' %}">My profile</a>
-    <form action="{% url 'users:change_profile_picture' %}" method="post">
+    <form action="{% url 'users:edit_bio' %}" method="post">
 
         <div class="form-group">
             {% csrf_token %}

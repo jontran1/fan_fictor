@@ -110,6 +110,7 @@ def edit_bio(request):
         form = BiographyForm(instance=users_profile, data=request.POST)
         if form.is_valid():
             form.save()
+            print("execute this line in bio")
             return HttpResponseRedirect(reverse('users:my_profile'))
 
     context = {'form': form}
