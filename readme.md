@@ -6,6 +6,10 @@
 
 ​	Users can create public or private stories, each story have their own chapters. Users can register an account. Users can post comments and authors can remove comments. I see about adding more features, but I think I may just move on.
 
+#### Demo
+
+![site demo](C:\Users\Jonathan\Desktop\fan_fictor\site demo.gif)
+
 #### Installation 
 
 - In the command prompt 
