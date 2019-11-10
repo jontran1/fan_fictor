@@ -8,7 +8,7 @@
 
 #### Demo
 
-![site demo](C:\Users\Jonathan\Desktop\fan_fictor\site demo.gif)
+![site demo](site demo.gif)
 
 #### Installation 
 
