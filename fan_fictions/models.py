@@ -7,8 +7,8 @@ class Story(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     public = models.BooleanField(default=True)
     title = models.CharField(max_length=50)
-    story_cover = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
+    story_cover = models.URLField()
 
     class Meta:
         verbose_name_plural = 'stories'
