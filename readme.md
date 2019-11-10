@@ -8,7 +8,7 @@
 
 #### Demo
 
-![site demo](./site demo.gif)
+![site demo](site demo.gif)
 
 #### Installation 
 
